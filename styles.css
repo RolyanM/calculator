@@ -142,6 +142,6 @@ h1 {
   color: white;
 }
 .calculator__fifth-row .calculator__fifth-row__zero {
-  flex-grow: 2;
+  flex-grow: 4;
   border-radius: 50px;
 }
