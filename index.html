@@ -19,46 +19,46 @@
     <div class="calculator">
 
 <!-- Display-->
-    <input type="text" class="display" disable>
+    <div type="text" class="display" id="answer">0</div>
 
       
 <!-- First Row-->
       <div class="calculator__first-row">
-        <button value="C">C</button>
-        <button>+/-</button>
-        <button value="%">%</button>
-        <button class="calculator__first-row__action" value="/">/</button>
+        <button value="C" id="clear">C</button>
+        <button id="plusminus">+/-</button>
+        <button value="%" id="percent" >%</button>
+        <button class="calculator__first-row__action" value="/" id="divide">/</button>
       </div>
 
 <!-- Second Row-->
       <div class="calculator__second-row">
-        <button value="7">7</button>
-        <button value="8">8</button>
-        <button value="9">9</button>
-        <button class="calculator__second-row__action" value="*">X</button>
+        <button value="7" id="seven">7</button>
+        <button value="8" id="eight">8</button>
+        <button value="9" id="nine">9</button>
+        <button class="calculator__second-row__action" value="*" id="multiply">X</button>
       </div>
 
 <!-- Third Row-->
       <div class="calculator__third-row">
-        <button value="4">4</button>
-        <button value="5">5</button>
-        <button value="6">6</button>
-        <button class="calculator__third-row__action" value="-">-</button>
+        <button value="4" id="four">4</button>
+        <button value="5" id="five">5</button>
+        <button value="6" id="six">6</button>
+        <button class="calculator__third-row__action" value="-" id="minus">-</button>
       </div>
 
 <!-- Fourth Row -->
       <div class="calculator__fourth-row">
-        <button value="1">1</button>
-        <button value="2">2</button>
-        <button value="3">3</button>
-        <button class="calculator__fourth-row__action" value="+">+</button>
+        <button value="1" id="one">1</button>
+        <button value="2" id="two">2</button>
+        <button value="3" id="three">3</button>
+        <button class="calculator__fourth-row__action" value="+" id="add">+</button>
       </div>
 
 <!-- Fifth Row-->
       <div class="calculator__fifth-row">
-        <button class="calculator__fifth-row__zero" value="0">0</button>
-        <button value=".">.</button>
-        <button class="calculator__fifth-row__action" value="=">=</button>
+        <button class="calculator__fifth-row__zero" value="0" id="zero">0</button>
+        <button value="." id="dot">.</button>
+        <button class="calculator__fifth-row__action" value="=" id="equals">=</button>
       </div>
 
     </div>
