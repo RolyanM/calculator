@@ -17,22 +17,20 @@ var answer = function answer(e) {
   } else {
     display.value += clickedButton; //adds the clicked button to the current display value 
   }
+};
+
+var answer2 = function answer2(e) {
+  var clickedButton = e.target.value;
+
+  if (clickedButton === '=' || display.value !== '') {
+    display.value = ParseFloat(display.value);
+  }
 }; //  //if pressed button === value "=" display the answer.
 //function to make the clicked buttons appear in the display.
-// let answer = (e) => {
-//   const buttonClicked = e.target.value;
-//   if (display.value += buttonClicked.value) {
-//    } else if (buttonClicked === '=') {
-//      display.value = eval(display.value);
-//    } else if (display.value !== '') {
-//      display.value = eval(display.value);
-// // // if button "C" is pressed return to normal
-//  } else if (clickedButtonValue === 'C') {
-//        display.value = '';
 //  
 //event listener for the buttons
 
 
 buttons.forEach(function (button) {
-  button.addEventListener('click', answer);
+  button.addEventListener('click', answer, answer2);
 }); // i think i need to add the var answer to this so they go to the display. I had to move this to the bottom as needs to go after the function above to have answer called
