@@ -20,27 +20,29 @@ var clear = function clear() {
 var equalsign = function equalsign() {
   mathsfunction = mathsfunction + currentNumber + "  =";
   document.getElementById("answer").innerHTML = mathsfunction;
-}; //places new number to right of current number
+}; //places new number to right of current number and then shows it on the display
 
 
 var addNumber = function addNumber(num) {
   num = num.toString();
-  currentNumber = parseInt(currentNumber + num, 10);
-  display();
+  currentNumber = parseInt(currentNumber + num);
+  display(); // invoke display function to get current number and show on the display
 }; //convert currentnumber to plus or minus
 
 
 var positiveNegativeSwitch = function positiveNegativeSwitch() {
   currentNumber = currentNumber * -1;
   display();
-}; //decimals
+}; //decimals - used test to check for unwanted symbols but not working. 
 
+
+var unwantedChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]+/;
 
 var dot = function dot() {
-  if (/\d*\.{1,}/.test(currentNumber) == true) {
+  if (unwantedChars.test(currentNumber) == true) {
     currentNumber = currentNumber;
   } else {
-    currentNumber = currentNumber + ".";
+    currentNumber = currentNumber + "." + numberToChange;
     display();
   }
 }; //on pressing operators, do some stuff
@@ -53,7 +55,7 @@ var funcButtonPress = function funcButtonPress(func) {
   display();
   document.getElementById("answer").innerHTML = numberToChange;
   document.getElementById("answer").innerHTML = mathsfunction;
-}; //pressing equals does some stuff
+}; //switch statement for = to sum the values inputed
 
 
 var equals = function equals() {
@@ -88,7 +90,7 @@ var equals = function equals() {
       display();
       break;
   }
-}; //what functions load when buttons are pressed
+}; //ID for buttons when pressed. (tried with value but couldnt get it to work :(.)
 
 
 document.getElementById("clear").addEventListener("click", clear);

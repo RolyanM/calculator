@@ -26,11 +26,11 @@ let equalsign = () => {
     document.getElementById("answer").innerHTML = (mathsfunction);
      
 }
-//places new number to right of current number
+//places new number to right of current number and then shows it on the display
 let addNumber = (num) => {
     num=num.toString();
-    currentNumber= parseInt((currentNumber + num),10);
-    display()
+    currentNumber= parseInt((currentNumber + num));
+    display() // invoke display function to get current number and show on the display
 }
 
 //convert currentnumber to plus or minus
@@ -39,13 +39,15 @@ let positiveNegativeSwitch = () => {
     display()
 }
 
-//decimals
+//decimals - used test to check for unwanted symbols but not working. 
+let unwantedChars =  /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]+/
+
 let dot = () => {
-    if ( /\d*\.{1,}/.test(currentNumber) == true) {
+    if ( unwantedChars.test(currentNumber) == true) {
         currentNumber=currentNumber;
     }
     else{
-        currentNumber=(currentNumber+".")
+        currentNumber=(currentNumber +"." + numberToChange )
         display()
     }                                                 
     
@@ -60,9 +62,37 @@ let funcButtonPress = (func) =>{
     document.getElementById("answer").innerHTML = mathsfunction;
 }
 
-//pressing equals does some stuff
+//switch statement for = to sum the values inputed
 let equals = () =>{
    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     switch(mathsfunction){
 
         case "+" :
@@ -99,7 +129,7 @@ let equals = () =>{
     }
 
 }
-//what functions load when buttons are pressed
+//ID for buttons when pressed. (tried with value but couldnt get it to work :(.)
 document.getElementById("clear").addEventListener("click", clear );
 document.getElementById("one").addEventListener("click", () =>  addNumber(1) );
 document.getElementById("two").addEventListener("click", () => addNumber(2) );
