@@ -12,7 +12,7 @@ let display = () => {
     document.getElementById("answer").innerHTML = currentNumber;
 }
 
-//clear calc
+// a fucntion to clear what is currently in the display and make it show a 0.
 let clear = () => {
     document.getElementById("answer").innerHTML = 0;
     currentNumber=""
@@ -62,6 +62,7 @@ let funcButtonPress = (func) =>{
 
 //pressing equals does some stuff
 let equals = () =>{
+   
     switch(mathsfunction){
 
         case "+" :

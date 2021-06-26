@@ -7,7 +7,7 @@ var mathsfunction = ""; //display new value of currentNumber
 
 var display = function display() {
   document.getElementById("answer").innerHTML = currentNumber;
-}; //clear calc
+}; // a fucntion to clear what is currently in the display and make it show a 0.
 
 
 var clear = function clear() {
