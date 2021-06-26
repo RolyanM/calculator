@@ -59,38 +59,64 @@ var funcButtonPress = function funcButtonPress(func) {
 
 
 var equals = function equals() {
-  switch (mathsfunction) {
-    case "+":
-      equalsign();
-      currentNumber = currentNumber + numberToChange;
-      display();
-      break;
-
-    case "-":
-      equalsign();
-      currentNumber = numberToChange - currentNumber;
-      display();
-      break;
-
-    case "*":
-      equalsign();
-      currentNumber = numberToChange * currentNumber;
-      display();
-      break;
-
-    case "/":
-      equalsign();
-      currentNumber = numberToChange / currentNumber;
-      display();
-      break;
-
-    case "%":
-      equalsign();
-      currentNumber = numberToChange / 100 * currentNumber;
-      display();
-      break;
+  if (mathsfunction === "+") {
+    equalsign();
+    currentNumber = currentNumber + numberToChange;
+    display();
   }
-}; //ID for buttons when pressed. (tried with value but couldnt get it to work :(.)
+
+  if (mathsfunction === "-") {
+    equalsign();
+    currentNumber = numberToChange - currentNumber;
+    display();
+  }
+
+  if (mathsfunction === "*") {
+    equalsign();
+    currentNumber = numberToChange * currentNumber;
+    display();
+  }
+
+  if (mathsfunction === "/") {
+    equalsign();
+    currentNumber = numberToChange / currentNumber;
+    display();
+  }
+
+  if (mathsfunction === "%") {
+    equalsign();
+    currentNumber = numberToChange / 100 * currentNumber;
+    display();
+  }
+}; //     switch(mathsfunction){
+//         case "+" :
+//         equalsign()
+//         currentNumber=currentNumber+numberToChange;
+//         display()
+//         break;
+//         case "-" :
+//         equalsign()
+//         currentNumber=numberToChange-currentNumber;
+//         display()
+//         break;
+//         case "*" :
+//         equalsign()
+//         currentNumber=(numberToChange * currentNumber);
+//         display()
+//         break;
+//         case "/" :
+//         equalsign()
+//         currentNumber=(numberToChange / currentNumber);
+//         display()
+//         break;
+//         case "%" :
+//         equalsign()
+//         currentNumber=((numberToChange/100) * currentNumber);
+//         display()
+//         break;
+//     }
+// }
+//ID for buttons when pressed. (tried with value but couldnt get it to work :(.)
 
 
 document.getElementById("clear").addEventListener("click", clear);
