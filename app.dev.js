@@ -14,18 +14,17 @@ var clear = function clear() {
   document.getElementById("answer").innerHTML = 0;
   currentNumber = 0;
   numberToChange = 0;
-}; //display function and equals
+}; // //sum the numbers
 
 
 var equalsign = function equalsign() {
-  mathsfunction = mathsfunction + currentNumber + "  =";
-  document.getElementById("answer").innerHTML = mathsfunction;
+  mathsfunction = mathsfunction + currentNumber;
 }; //places new number to right of current number and then shows it on the display
 
 
-var addNumber = function addNumber(num) {
-  num = num.toString();
-  currentNumber = parseInt(currentNumber + num);
+var addNumber = function addNumber(number) {
+  number = number.toString();
+  currentNumber = parseInt(currentNumber + number);
   display(); // invoke display function to get current number and show on the display
 }; //convert currentnumber to plus or minus
 
@@ -33,32 +32,32 @@ var addNumber = function addNumber(num) {
 var positiveToNegative = function positiveToNegative() {
   currentNumber = currentNumber * -1;
   display();
-}; //decimals - used test to check for unwanted symbols but not working. 
+}; //decimals - used test to check for unwanted symbols but not working.
 
 
 var unwantedChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]+/;
 
-var dot = function dot() {
+var decimal = function decimal() {
   if (unwantedChars.test(currentNumber) == true) {
     currentNumber = currentNumber;
   } else {
     currentNumber = currentNumber + "." + numberToChange;
     display();
   }
-}; //on pressing operators function to show + - etc,
+}; //on pressing operators function to show + - etc and return the number to zero,
 
 
-var funcButtonPress = function funcButtonPress(func) {
+var funcButtonPress = function funcButtonPress(theMathsFunction) {
   numberToChange = currentNumber;
   currentNumber = "0";
-  mathsfunction = func;
+  mathsfunction = theMathsFunction;
   display();
   document.getElementById("answer").innerHTML = numberToChange;
   document.getElementById("answer").innerHTML = mathsfunction;
-}; //if statements for = to sum the values inputed
+}; //if statements for to sum the values inputed
 
 
-var equals = function equals() {
+var sumFunction = function sumFunction() {
   if (mathsfunction === "+") {
     equalsign();
     currentNumber = currentNumber + numberToChange;
@@ -136,8 +135,8 @@ document.getElementById("multiply").addEventListener("click", function () {
 document.getElementById("divide").addEventListener("click", function () {
   return funcButtonPress("/");
 });
-document.getElementById("dot").addEventListener("click", dot);
+document.getElementById("dot").addEventListener("click", decimal);
 document.getElementById("percent").addEventListener("click", function () {
   return funcButtonPress("%");
 });
-document.getElementById("equals").addEventListener("click", equals);
+document.getElementById("equals").addEventListener("click", sumFunction);
