@@ -25,7 +25,7 @@ h1 {
   padding-bottom: 15px;
   border-radius: 7px;
   background-color: black;
-  box-shadow: 5px 8px 8px -2px rgba(0, 0, 0, 0.61);
+  box-shadow: 5px 8px 8px -2px black;
 }
 
 .display {
@@ -33,7 +33,7 @@ h1 {
   height: 80px;
   border: none;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 1px;
   font-size: 2rem;
   background-color: black;
   color: #fff;
@@ -144,4 +144,17 @@ h1 {
 .calculator__fifth-row .calculator__fifth-row__zero {
   flex-grow: 4;
   border-radius: 50px;
+}
+
+@media screen and (min-width: 768px) {
+  screen {
+    width: 100vw;
+    height: 100vh;
+  }
+}
+@media screen and (min-width: 480px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
 }

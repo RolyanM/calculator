@@ -2,8 +2,8 @@
 console.log("Hello");
 
 
-let currentNumber = "";
-let numberToChange = "";
+let currentNumber = 0;
+let numberToChange = 0;
 let mathsfunction = "";
 
 
@@ -15,14 +15,14 @@ let display = () => {
 // a fucntion to clear what is currently in the display and make it show a 0.
 let clear = () => {
     document.getElementById("answer").innerHTML = 0;
-    currentNumber=""
-    numberToChange=""
+    currentNumber= 0;
+    numberToChange= 0;
 
     
 }
-//display function and equals on middle row
+//display function and equals
 let equalsign = () => {
-    mathsfunction=mathsfunction+currentNumber +"  =";
+    mathsfunction=mathsfunction+currentNumber + "  =";
     document.getElementById("answer").innerHTML = (mathsfunction);
      
 }
@@ -30,13 +30,13 @@ let equalsign = () => {
 let addNumber = (num) => {
     num=num.toString();
     currentNumber= parseInt((currentNumber + num));
-    display() // invoke display function to get current number and show on the display
+    display(); // invoke display function to get current number and show on the display
 }
 
 //convert currentnumber to plus or minus
-let positiveNegativeSwitch = () => {
+let positiveToNegative = () => {
     currentNumber=(currentNumber * -1);
-    display()
+    display();
 }
 
 //decimals - used test to check for unwanted symbols but not working. 
@@ -44,113 +44,49 @@ let unwantedChars =  /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]+/
 
 let dot = () => {
     if ( unwantedChars.test(currentNumber) == true) {
-        currentNumber=currentNumber;
+        currentNumber=currentNumber; 
     }
-    else{
-        currentNumber=(currentNumber +"." + numberToChange )
-        display()
-    }                                                 
+     else{
+         currentNumber=(currentNumber + "." + numberToChange )
+         display();
+     }                                                 
     
 }
-//on pressing operators, do some stuff
-let funcButtonPress = (func) =>{
+//on pressing operators function to show + - etc,
+ let funcButtonPress = (func) =>{
     numberToChange = currentNumber;
     currentNumber = "0";
-    mathsfunction = func;
-    display()
+     mathsfunction = func;
+     display();
     document.getElementById("answer").innerHTML = numberToChange;
-    document.getElementById("answer").innerHTML = mathsfunction;
-}
+     document.getElementById("answer").innerHTML = mathsfunction;
+ }
 
-//switch statement for = to sum the values inputed
+//if statements for = to sum the values inputed
 let equals = () =>{
-   
 
 if (mathsfunction === "+") {
-    equalsign()
+    equalsign();
     currentNumber=currentNumber+numberToChange;
-    display()
+    display();
 } if (mathsfunction === "-") {
-    equalsign()
+    equalsign();
     currentNumber=numberToChange-currentNumber;       
-    display()
+    display();
 } if (mathsfunction === "*") {
-    equalsign()
+    equalsign();
     currentNumber=(numberToChange * currentNumber);
-    display()
+    display();
 }  if  (mathsfunction === "/") {
-    equalsign()
+    equalsign();
     currentNumber=(numberToChange / currentNumber);
-    display()
+    display();
 }  if (mathsfunction === "%") {
-    equalsign()
+    equalsign();
     currentNumber=((numberToChange/100) * currentNumber);
-    display()
+    display();
 }
 } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//     switch(mathsfunction){
-
-//         case "+" :
-//         equalsign()
-//         currentNumber=currentNumber+numberToChange;
-//         display()
-//         break;
-
-//         case "-" :
-//         equalsign()
-//         currentNumber=numberToChange-currentNumber;
-//         display()
-//         break;
-
-//         case "*" :
-//         equalsign()
-//         currentNumber=(numberToChange * currentNumber);
-//         display()
-//         break;
-
-//         case "/" :
-//         equalsign()
-//         currentNumber=(numberToChange / currentNumber);
-//         display()
-//         break;
-
-//         case "%" :
-//         equalsign()
-//         currentNumber=((numberToChange/100) * currentNumber);
-//         display()
-//         break;
-
-        
-//     }
 
 // }
 //ID for buttons when pressed. (tried with value but couldnt get it to work :(.)
@@ -165,7 +101,7 @@ document.getElementById("seven").addEventListener("click",() => addNumber(7) );
 document.getElementById("eight").addEventListener("click",() => addNumber(8) );
 document.getElementById("nine").addEventListener("click",() => addNumber(9) );
 document.getElementById("zero").addEventListener("click",() => addNumber(0) );
-document.getElementById("plusminus").addEventListener("click", positiveNegativeSwitch );
+document.getElementById("plusminus").addEventListener("click", positiveToNegative );
 document.getElementById("add").addEventListener("click", () => funcButtonPress("+") );
 document.getElementById("minus").addEventListener("click", () => funcButtonPress("-") );
 document.getElementById("multiply").addEventListener("click", () => funcButtonPress("*") );
@@ -175,147 +111,3 @@ document.getElementById("percent").addEventListener("click", () => funcButtonPre
 document.getElementById("equals").addEventListener("click", equals );
 
 
-
-
-
-
-// //display
-
-
-// // var for the display at the top where button values will be printed.
-
-// const display = document.querySelector(".display");
-
-
-
-// // buttons 
-
-// //var for buttons using Q-S-A to select all buttons
-// const buttons = document.querySelectorAll('button');
-
-
-// //function to make the clicked buttons appear in the display.
-
-// let answer = (e) => {
-//   const clickedButton = e.target.innerHTML;
-//   console.log(clickedButton);
-  
-
-//   if (clickedButton === '=') { //if pressed button === value "=" display the answer.
-      
-//     if (display.value !== '') {
-      
-//       currentNumber = display.innerHTML //need to turn the string to a number and sum it.
-      
-//       console.log(currentNumber);
-//     }
-//     else if (funcButtonPress) {
-
-//     }
-
-//   } else if (clickedButton === 'C') {   //clear the display
-    
-//     display.value = '';
-//   } else {   // display clicked button (this only works if it is at the else)
-    
-//     display.value += clickedButton;
-//   }
-// };
-
-
-
-// // operators 
-
-// const funcButtonPress = (func) => {
-//   numberToChange = currentNumber;
-//   currentNumber = "0";
-//   mathsfunction = func;
-//   display()
-//   document.getElementById("numbertochange").innerHTML = numberToChange;
-//   document.getElementById("mathsfunction").innerHTML = mathsfunction;
-
-// }
-  
-
-
-
-
-
-
-
-
-
-
-// let answer2 = (e) => {
-//   const clickedButton = e.target.value;
-
-// // take the display number 
-
-
-// //covert to numbers 
-
-
-// // calculate
-
-
-// // return number 
-
-
-//   if (clickedButton === '=' || display.value != '') {
-      
-//   display.value = parseFloat(display.value);
-// } 
-
-//   }
-
-// //  
-
-
-//function to make the clicked buttons appear in the display.
-
-
-
-//  
-// //event listener for the buttons
-// buttons.forEach((button) => {
-//   button.addEventListener('click', answer, answer2);
-// })
-// // i think i need to add the var answer to this so they go to the display. I had to move this to the bottom as needs to go after the function above to have answer called
-
-
-//  //const equals = () =>{
-// //   switch(mathsOperator){
-
-// //     case "+" :
-// //     equalsign()
-// //     displayNumber=displayNumber+numberToChange;
-// //     display()
-// //     break;
-
-// //     case "-" :
-// //     equalsign()
-// //     displayNumber=numberToChange-displayNumber;
-// //     display()
-// //     break;
-
-// //     case "*" :
-// //     equalsign()
-// //     displayNumber=(numberToChange * displayNumber);
-// //     display()
-// //     break;
-
-// //     case "/" :
-// //     equalsign()
-// //     displayNumber=(numberToChange / displayNumber);
-// //     display()
-// //     break;
-
-// //     case "%" :
-// //     equalsign()
-// //     displayNumber=((numberToChange/100) * displayNumber);
-// //     display()
-// //     break;
-
-    
-// // }
-// // }
