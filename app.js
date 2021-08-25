@@ -1,113 +1,137 @@
+const output = document.querySelector(".calc__output");
+const allClear = document.querySelector(".ac");
+const plusMinus = document.querySelector(".plusminus");
+const percentage = document.querySelector(".percentage");
+const divide = document.querySelector(".divide");
+const seven = document.querySelector(".seven");
+const eight = document.querySelector(".eight");
+const nine = document.querySelector(".nine");
+const multiply = document.querySelector(".multiply");
+const four = document.querySelector(".four");
+const five = document.querySelector(".five");
+const six = document.querySelector(".six");
+const minus = document.querySelector(".minus");
+const one = document.querySelector(".one");
+const two = document.querySelector(".two");
+const three = document.querySelector(".three");
+const plus = document.querySelector(".plus");
+const zero = document.querySelector(".zero");
+const dot = document.querySelector(".dot");
+const equals = document.querySelector(".equals");
+const numbers = document.querySelectorAll(".numbers");
+const operators = document.querySelectorAll(".operators");
+const operatorsDm = document.querySelectorAll(".operatorsDm");
+const plusminus = document.querySelector(".plusminus");
+const percent = document.querySelector(".percentage");
 
-console.log("Hello");
+let outputString = "";
+let totalFormula = "";
 
+const reset = allClear.addEventListener("click", () => {
+  outputString = "0";
+  output.style.fontSize = "68pt";
+  console.clear();
+  handleUpdateOutput();
+});
 
-let currentNumber = 0;
-let numberToChange = 0;
-let mathsfunction = "";
+const equalsClick = equals.addEventListener("click", (e) => {
+  handleEqualsEvent(e);
+});
 
+numbers.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    handleClickEventListener(e);
+  });
+});
 
-//display new value of currentNumber
-let display = () => {
-    document.getElementById("answer").innerHTML = currentNumber;
-}
+operators.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    handleOperatorEvent(e);
+  });
+});
 
-// a fucntion to clear what is currently in the display and make it show a 0.
-let clear = () => {
-    document.getElementById("answer").innerHTML = 0;
-    currentNumber= 0;
-    numberToChange= 0;
+operatorsDm.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    handleOperatorsDmEvent(e);
+  });
+});
 
+dot.addEventListener("click", () => {
+  const splitOutput = output.innerHTML.split("");
+  if (splitOutput[splitOutput.length - 2] == ".") {
+    output.innerHTML = `NaN`;
+  } else {
+    `${outputString} + ${dot}`;
+  }
+});
 
-}
-// //sum the numbers
- let equalsign = () => {
-     mathsfunction=mathsfunction+currentNumber;
-   
+percent.addEventListener("click", (e) => {
+  const buttonPressed = e.target.innerHTML;
+  outputString = `${outputString}`;
+  if (buttonPressed === "%") {
+    outputString = `${outputString} / 100`;
+    let result = new Function("return " + outputString)();
+    output.innerHTML = result;
+  }
+});
 
- }
-//places new number to right of current number and then shows it on the display
-let addNumber = (number) => {
-    number=number.toString();
-    currentNumber= parseInt((currentNumber + number));
-    display(); // invoke display function to get current number and show on the display
-}
+plusminus.addEventListener("click", (e) => {
+  const buttonPressed = e.target.innerHTML;
+  outputString = `${outputString}`;
+  if (buttonPressed === "+/-" && outputString > 0) {
+    outputString = `-${outputString}`;
+    output.innerHTML = outputString;
+    console.log(outputString);
+  } else if (buttonPressed === "+/-" && outputString < 0) {
+    outputString = outputString * -1;
+    output.innerHTML = outputString 
+  }
 
-//convert currentnumber to plus or minus
-let positiveToNegative = () => {
-    currentNumber=(currentNumber * -1);
-    display();
-}
+});
 
-//decimals - used test to check for unwanted symbols but not working.
-let unwantedChars =  /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]+/
+const handleClickEventListener = (e) => {
+  const buttonPressed = e.target.innerHTML;
+  if (outputString === "0") {
+    outputString = buttonPressed;
+  } else {
+    outputString = `${outputString}${buttonPressed}`;
+  }
+  console.log(outputString);
+  handleUpdateOutput();
+};
 
-let decimal = () => {
-    if ( unwantedChars.test(currentNumber) == true) {
-        currentNumber=currentNumber;
-    }
-     else{
-         currentNumber=(currentNumber + "." + numberToChange )
-         display();
-     }
+const handleOperatorEvent = (e) => {
+  const buttonPressed = e.target.innerHTML;
+  outputString = `${outputString} ${buttonPressed} `;
+  console.log(outputString);
+};
 
-}
-//on pressing operators function to show + - etc and return the number to zero,
- let funcButtonPress = (theMathsFunction) =>{
-    numberToChange = currentNumber;
-    currentNumber = "0";
-    mathsfunction = theMathsFunction;
-     display();
-     document.getElementById("answer").innerHTML = numberToChange;
-     document.getElementById("answer").innerHTML = mathsfunction;
- }
+const handleUpdateOutput = () => {
+  if (outputString.length > 7) {
+    output.style.fontSize = "30pt";
+  }
+  output.innerHTML = outputString;
+};
 
-//if statements for to sum the values inputed
-let sumFunction = () =>{
+const handleEqualsEvent = (e) => {
+  let result = new Function("return " + outputString)();
+  output.innerHTML = result;
+  outputString = result;
+  if (result.length > 7) {
+    output.style.fontSize = "30pt";
+  } else {
+    output.style.fontSize = "68pt";
+  }
+};
 
-if (mathsfunction === "+") {
-    equalsign();
-    currentNumber=currentNumber+numberToChange;
-    display();
-} if (mathsfunction === "-") {
-    equalsign();
-    currentNumber=numberToChange-currentNumber;
-    display();
-} if (mathsfunction === "*") {
-    equalsign();
-    currentNumber=(numberToChange * currentNumber);
-    display();
-}  if  (mathsfunction === "/") {
-    equalsign();
-    currentNumber=(numberToChange / currentNumber);
-    display();
-}  if (mathsfunction === "%") {
-    equalsign();
-    currentNumber=((numberToChange/100) * currentNumber);
-    display();
-}
-}
+const handleOperatorsDmEvent = (e) => {
+  const buttonPressed = e.target.innerHTML;
+  const newMultiply = "*";
+  const newDivide = "/";
 
-// }
-//ID for buttons when pressed. (tried with value but couldnt get it to work :(.)
-document.getElementById("clear").addEventListener("click", clear );
-document.getElementById("one").addEventListener("click", () =>  addNumber(1) );
-document.getElementById("two").addEventListener("click", () => addNumber(2) );
-document.getElementById("three").addEventListener("click", () => addNumber(3) );
-document.getElementById("four").addEventListener("click",() => addNumber(4) );
-document.getElementById("five").addEventListener("click",() => addNumber(5) );
-document.getElementById("six").addEventListener("click",() => addNumber(6) );
-document.getElementById("seven").addEventListener("click",() => addNumber(7) );
-document.getElementById("eight").addEventListener("click",() => addNumber(8) );
-document.getElementById("nine").addEventListener("click",() => addNumber(9) );
-document.getElementById("zero").addEventListener("click",() => addNumber(0) );
-document.getElementById("plusminus").addEventListener("click", positiveToNegative );
-document.getElementById("add").addEventListener("click", () => funcButtonPress("+") );
-document.getElementById("minus").addEventListener("click", () => funcButtonPress("-") );
-document.getElementById("multiply").addEventListener("click", () => funcButtonPress("*") );
-document.getElementById("divide").addEventListener("click", () => funcButtonPress("/") );
-document.getElementById("dot").addEventListener("click", decimal );
-document.getElementById("percent").addEventListener("click", () => funcButtonPress("%") );
-document.getElementById("equals").addEventListener("click", sumFunction );
-
-
+  if (buttonPressed === "x") {
+    outputString = `${outputString} ${newMultiply} `;
+  } else if (buttonPressed === "÷") {
+    outputString = `${outputString} ${newDivide} `;
+  }
+};

@@ -1,142 +1,136 @@
 "use strict";
 
-console.log("Hello");
-var currentNumber = 0;
-var numberToChange = 0;
-var mathsfunction = ""; //display new value of currentNumber
+var output = document.querySelector(".calc__output");
+var allClear = document.querySelector(".ac");
+var plusMinus = document.querySelector(".plusminus");
+var percentage = document.querySelector(".percentage");
+var divide = document.querySelector(".divide");
+var seven = document.querySelector(".seven");
+var eight = document.querySelector(".eight");
+var nine = document.querySelector(".nine");
+var multiply = document.querySelector(".multiply");
+var four = document.querySelector(".four");
+var five = document.querySelector(".five");
+var six = document.querySelector(".six");
+var minus = document.querySelector(".minus");
+var one = document.querySelector(".one");
+var two = document.querySelector(".two");
+var three = document.querySelector(".three");
+var plus = document.querySelector(".plus");
+var zero = document.querySelector(".zero");
+var dot = document.querySelector(".dot");
+var equals = document.querySelector(".equals");
+var numbers = document.querySelectorAll(".numbers");
+var operators = document.querySelectorAll(".operators");
+var operatorsDm = document.querySelectorAll(".operatorsDm");
+var plusminus = document.querySelector(".plusminus");
+var percent = document.querySelector(".percentage");
+var outputString = "";
+var totalFormula = "";
+var reset = allClear.addEventListener("click", function () {
+  outputString = "0";
+  output.style.fontSize = "68pt";
+  console.clear();
+  handleUpdateOutput();
+});
+var equalsClick = equals.addEventListener("click", function (e) {
+  handleEqualsEvent(e);
+});
+numbers.forEach(function (button) {
+  button.addEventListener("click", function (e) {
+    handleClickEventListener(e);
+  });
+});
+operators.forEach(function (button) {
+  button.addEventListener("click", function (e) {
+    handleOperatorEvent(e);
+  });
+});
+operatorsDm.forEach(function (button) {
+  button.addEventListener("click", function (e) {
+    handleOperatorsDmEvent(e);
+  });
+});
+dot.addEventListener("click", function () {
+  var splitOutput = output.innerHTML.split("");
 
-var display = function display() {
-  document.getElementById("answer").innerHTML = currentNumber;
-}; // a fucntion to clear what is currently in the display and make it show a 0.
-
-
-var clear = function clear() {
-  document.getElementById("answer").innerHTML = 0;
-  currentNumber = 0;
-  numberToChange = 0;
-}; // //sum the numbers
-
-
-var equalsign = function equalsign() {
-  mathsfunction = mathsfunction + currentNumber;
-}; //places new number to right of current number and then shows it on the display
-
-
-var addNumber = function addNumber(number) {
-  number = number.toString();
-  currentNumber = parseInt(currentNumber + number);
-  display(); // invoke display function to get current number and show on the display
-}; //convert currentnumber to plus or minus
-
-
-var positiveToNegative = function positiveToNegative() {
-  currentNumber = currentNumber * -1;
-  display();
-}; //decimals - used test to check for unwanted symbols but not working.
-
-
-var unwantedChars = /[!@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]+/;
-
-var decimal = function decimal() {
-  if (unwantedChars.test(currentNumber) == true) {
-    currentNumber = currentNumber;
+  if (splitOutput[splitOutput.length - 2] == ".") {
+    output.innerHTML = "NaN";
   } else {
-    currentNumber = currentNumber + "." + numberToChange;
-    display();
+    "".concat(outputString, " + ").concat(dot);
   }
-}; //on pressing operators function to show + - etc and return the number to zero,
+});
+percent.addEventListener("click", function (e) {
+  var buttonPressed = e.target.innerHTML;
+  outputString = "".concat(outputString);
 
-
-var funcButtonPress = function funcButtonPress(theMathsFunction) {
-  numberToChange = currentNumber;
-  currentNumber = "0";
-  mathsfunction = theMathsFunction;
-  display();
-  document.getElementById("answer").innerHTML = numberToChange;
-  document.getElementById("answer").innerHTML = mathsfunction;
-}; //if statements for to sum the values inputed
-
-
-var sumFunction = function sumFunction() {
-  if (mathsfunction === "+") {
-    equalsign();
-    currentNumber = currentNumber + numberToChange;
-    display();
+  if (buttonPressed === "%") {
+    outputString = "".concat(outputString, " / 100");
+    var result = new Function("return " + outputString)();
+    output.innerHTML = result;
   }
+});
+plusminus.addEventListener("click", function (e) {
+  var buttonPressed = e.target.innerHTML;
+  outputString = "".concat(outputString);
 
-  if (mathsfunction === "-") {
-    equalsign();
-    currentNumber = numberToChange - currentNumber;
-    display();
+  if (buttonPressed === "+/-" && outputString > 0) {
+    outputString = "-".concat(outputString);
+    output.innerHTML = outputString;
+    console.log(outputString);
+  } else if (buttonPressed === "+/-" && outputString < 0) {
+    outputString = outputString * -1;
+    output.innerHTML = outputString;
   }
+});
 
-  if (mathsfunction === "*") {
-    equalsign();
-    currentNumber = numberToChange * currentNumber;
-    display();
-  }
+var handleClickEventListener = function handleClickEventListener(e) {
+  var buttonPressed = e.target.innerHTML;
 
-  if (mathsfunction === "/") {
-    equalsign();
-    currentNumber = numberToChange / currentNumber;
-    display();
+  if (outputString === "0") {
+    outputString = buttonPressed;
+  } else {
+    outputString = "".concat(outputString).concat(buttonPressed);
   }
 
-  if (mathsfunction === "%") {
-    equalsign();
-    currentNumber = numberToChange / 100 * currentNumber;
-    display();
+  console.log(outputString);
+  handleUpdateOutput();
+};
+
+var handleOperatorEvent = function handleOperatorEvent(e) {
+  var buttonPressed = e.target.innerHTML;
+  outputString = "".concat(outputString, " ").concat(buttonPressed, " ");
+  console.log(outputString);
+};
+
+var handleUpdateOutput = function handleUpdateOutput() {
+  if (outputString.length > 7) {
+    output.style.fontSize = "30pt";
   }
-}; // }
-//ID for buttons when pressed. (tried with value but couldnt get it to work :(.)
 
+  output.innerHTML = outputString;
+};
 
-document.getElementById("clear").addEventListener("click", clear);
-document.getElementById("one").addEventListener("click", function () {
-  return addNumber(1);
-});
-document.getElementById("two").addEventListener("click", function () {
-  return addNumber(2);
-});
-document.getElementById("three").addEventListener("click", function () {
-  return addNumber(3);
-});
-document.getElementById("four").addEventListener("click", function () {
-  return addNumber(4);
-});
-document.getElementById("five").addEventListener("click", function () {
-  return addNumber(5);
-});
-document.getElementById("six").addEventListener("click", function () {
-  return addNumber(6);
-});
-document.getElementById("seven").addEventListener("click", function () {
-  return addNumber(7);
-});
-document.getElementById("eight").addEventListener("click", function () {
-  return addNumber(8);
-});
-document.getElementById("nine").addEventListener("click", function () {
-  return addNumber(9);
-});
-document.getElementById("zero").addEventListener("click", function () {
-  return addNumber(0);
-});
-document.getElementById("plusminus").addEventListener("click", positiveToNegative);
-document.getElementById("add").addEventListener("click", function () {
-  return funcButtonPress("+");
-});
-document.getElementById("minus").addEventListener("click", function () {
-  return funcButtonPress("-");
-});
-document.getElementById("multiply").addEventListener("click", function () {
-  return funcButtonPress("*");
-});
-document.getElementById("divide").addEventListener("click", function () {
-  return funcButtonPress("/");
-});
-document.getElementById("dot").addEventListener("click", decimal);
-document.getElementById("percent").addEventListener("click", function () {
-  return funcButtonPress("%");
-});
-document.getElementById("equals").addEventListener("click", sumFunction);
+var handleEqualsEvent = function handleEqualsEvent(e) {
+  var result = new Function("return " + outputString)();
+  output.innerHTML = result;
+  outputString = result;
+
+  if (result.length > 7) {
+    output.style.fontSize = "30pt";
+  } else {
+    output.style.fontSize = "68pt";
+  }
+};
+
+var handleOperatorsDmEvent = function handleOperatorsDmEvent(e) {
+  var buttonPressed = e.target.innerHTML;
+  var newMultiply = "*";
+  var newDivide = "/";
+
+  if (buttonPressed === "x") {
+    outputString = "".concat(outputString, " ").concat(newMultiply, " ");
+  } else if (buttonPressed === "÷") {
+    outputString = "".concat(outputString, " ").concat(newDivide, " ");
+  }
+};

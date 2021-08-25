@@ -1,0 +1,23 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "Week 3 Javacript challenge to make an Iphone calculator.",
+  "main": "app.dev.js",
+  "dependencies": {
+    "cypress": "^8.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RolyanM/calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RolyanM/calculator/issues"
+  },
+  "homepage": "https://github.com/RolyanM/calculator#readme"
+}

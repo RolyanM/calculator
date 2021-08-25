@@ -1,175 +1,87 @@
-
-
 * {
-  padding: 0;
   margin: 0;
-}
-
-body {
-  width: 100vw;
-  height: auto;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-h1 {
-  width: 100%;
-  text-align: center;
-  height: 50px;
-  color:blue;
-}
-
-.calculator {
-  width: 300px;
-  padding-bottom: 15px;
-  border-radius: 7px;
-  background-color:black;
-  box-shadow: 5px 8px 8px -2px black;
-}
-
-.display {
-  width: 100%;
-  height: 80px;
-  border: none;
+  padding: 0;
   box-sizing: border-box;
-  padding: 1px;
-  font-size: 2rem;
+}
+
+.calc {
   background-color: black;
-  color: #fff;
-  text-align: right;
-  border-top-left-radius: 7px;
-  border-top-right-radius: 7px;
-}
+  width: 400px;
+  height: 650px;
+  margin: 20px 10px;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  position: relative;
 
-.calculator__first-row {
-  display: flex;
-  justify-content: space-between;
+  .calc__output {
+    font-size: 90px;
+    text-align: right;
+    height: 120px;
+    padding: 10px;
+    color: white;
+    font-family: helvetica;
+  }
 
-  button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    background-color: lightgray;
+  .calc__buttons-container {
+    height: 75%;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .operators,
+  .operatorsDm,
+  .equals {
+    background: orange;
+    font-size: 40px;
+  }
+
+  .functions {
+    background-color: #a5a5a5;
     color: black;
-    margin: 10px;
   }
 
-  .calculator__first-row__action {
-    background-color: orange;
-    color: white;
+  .numbers {
+    background: rgb(73, 73, 73);
   }
-}
-
-.calculator__second-row {
-  display: flex;
-  justify-content: space-between;
-
-  button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    background-color: darkgray;
-    color: white;
-    margin: 10px;
-  }
-
-  .calculator__second-row__action {
-    background-color: orange;
-    color: white;
+  .zero {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    border-radius: 55px;
+    width: 170px;
+    text-align: left;
+    padding-left: 20px;
   }
 }
 
-.calculator__third-row {
-  display: flex;
-  justify-content: space-between;
-
-  button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    background-color: darkgray;
-    color: white;
-    margin: 10px;
-  }
-
-  .calculator__third-row__action {
-    background-color: orange;
-    color: white;
-  }
+button {
+  border-radius: 50%;
+  height: 95%;
+  width: 90%;
+  color: white;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  font-family: helvetica;
 }
 
-.calculator__fourth-row {
-  display: flex;
-  justify-content: space-between;
-
-  button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    background-color: darkgray;
-    color: white;
-    margin: 10px;
-  }
-
-  .calculator__fourth-row__action {
-    background-color: orange;
-    color: white;
-  }
+button:focus {
+  filter: brightness(130%);
+  transition: filter 0.2s;
 }
 
-.calculator__fifth-row {
-  display: flex;
-  justify-content: space-between;
-
-  button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    font-size: 1.5rem;
-    background-color: darkgray;
-    color: white;
-    margin: 10px;
-  }
-
-  .calculator__fifth-row__action {
-    background-color: orange;
-    color: white;
-  }
-
-  .calculator__fifth-row__zero {
-    flex-grow: 4;
-    border-radius: 50px;
-    
-  }
+button:active {
+  filter: brightness(130%);
+  transition: filter 0.2s;
 }
 
-@media screen and (min-width : 768px) {
-  screen {
-    width: 100vw;
-    height: 100vh;
-  }
-}
-
-@media screen and (min-width : 480px) {
-  body {
-    width: 100vw;
-    height: 100vh;
-  }
+.calc__line {
+  width: 120px;
+  height: 5px;
+  background: white;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 5px;
+  left: 140px;
 }
